@@ -1,8 +1,12 @@
 {
   "ignore": [
     ".git",
-    "dist/**/*",
+    "build/**/*",
     "node_modules/**/*",
     "test/**/*"
-  ]
+  ],
+  "events": {
+    "restart": "npm run build"
+  },
+  "verbose": false
 }

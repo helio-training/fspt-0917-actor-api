@@ -7,11 +7,11 @@ const port = process.env.PORT || 4000;
 
 server.connection({
   port, router: {
-    isCaseSensitive: false
+    isCaseSensitive: false,
   },
   routes: {
-    cors: true
-  }
+    cors: true,
+  },
 });
 
 server.register([
@@ -19,12 +19,12 @@ server.register([
   require('vision'),
   require('blipp'),
   require('tv'),
-  require('hapi-async-handler'),
+  require('hapi-es7-async-handler'),
   {
     register: require('good'),
     options: {
       ops: {
-        interval: 5000
+        interval: 5000,
       },
       reporters: {
         console: [
@@ -33,14 +33,14 @@ server.register([
             name: 'Squeeze',
             args: [{
               log: '*',
-              response: '*', request: '*', error: '*'
-            }]
+              response: '*', request: '*', error: '*',
+            }],
           },
           {
-            module: 'good-console'
-          }, 'stdout']
-      }
-    }
+            module: 'good-console',
+          }, 'stdout'],
+      },
+    },
   },
   {
     register: require('hapi-swagger'),
@@ -51,10 +51,10 @@ server.register([
       info: {
         title: 'Example',
         version: '1.0.0',
-        description: 'An example api'
-      }
-    }
-  }
+        description: 'An example api',
+      },
+    },
+  },
 ], err => {
   if (err) throw err;
 
