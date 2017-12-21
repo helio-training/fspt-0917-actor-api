@@ -1,18 +1,19 @@
-import { Server } from 'hapi';
+import { Server } from 'hapi'
 
-const server = new Server();
+const server = new Server()
 
-const env = process.env.NODE_ENV || 'development';
-const port = process.env.PORT || 4000;
+const env = process.env.NODE_ENV || 'development'
+const port = process.env.PORT || 4000
 
 server.connection({
-  port, router: {
+  port,
+  router: {
     isCaseSensitive: false,
   },
   routes: {
     cors: true,
   },
-});
+})
 
 server.register([
   require('inert'),
@@ -55,17 +56,17 @@ server.register([
       },
     },
   },
+  require('./plugins/actors'),
 ], err => {
-  if (err) throw err;
+  if (err) throw err
 
   if (env !== 'testing') {
     server.start(err => {
-      if (err) throw err;
-      server.log('info', 'Server running at: ' + server.info.uri);
-    });
+      if (err) throw err
+      server.log('info', 'Server running at: ' + server.info.uri)
+    })
   }
 
-});
+})
 
-
-export default server;
+export default server
